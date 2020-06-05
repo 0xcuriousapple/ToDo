@@ -35,7 +35,7 @@ export default function iconselector(props) {
                 return <ShoppingCartOutlinedIcon />
                 break;
             case "Set Date":
-                return <EventIcon />
+                return <EventIcon fontSize="small" />
             case "Date":
                 return <Chip
                     label={props.date}

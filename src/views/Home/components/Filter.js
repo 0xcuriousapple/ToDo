@@ -8,15 +8,10 @@ import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 import WorkOutlineOutlinedIcon from "@material-ui/icons/WorkOutlineOutlined";
 import FaceOutlinedIcon from "@material-ui/icons/FaceOutlined";
 import ShoppingCartOutlinedIcon from "@material-ui/icons/ShoppingCartOutlined";
-import AddIcon from '@material-ui/icons/Add';
-
-import PriorityHighIcon from '@material-ui/icons/PriorityHigh';
-import LowPriorityIcon from '@material-ui/icons/LowPriority';
-
-import CheckCircleIcon from '@material-ui/icons/CheckCircle';
+import FiberNewOutlinedIcon from "@material-ui/icons/FiberNewOutlined";
 import DoneIcon from '@material-ui/icons/Done';
 import CachedIcon from '@material-ui/icons/Cached';
-
+import TaskChipDate from "./TaskChipDate";
 import { Grid, Hidden } from '@material-ui/core';
 import { red } from '@material-ui/core/colors';
 
@@ -70,44 +65,82 @@ const useStyles = makeStyles((theme) => ({
 
 }));
 
-export default function Filter() {
+export default function Filter(props) {
     const classes = useStyles();
+    const [filters, setFilter] = React.useState(
+        {
+            Personal: 0,
+            Work: 0,
+            Shopping: 0,
+            Others: 0,
+            high: 0,
+            low: 0,
+            medium: 0,
+            new: 0,
+            inprogress: 0,
+            completed: 0,
+            date: 0
+        }
+    );
 
-    const handleDelete = () => {
-        console.info('You clicked the delete icon.');
+    const handleModify = (index, id, value) => {
+        props.add({ 'date': value })
+        const temp = filters
+        temp['date'] = value;
+        setFilter(temp);
     };
 
-    const handleClick = () => {
-        console.info('You clicked the Chip.');
-    };
+    const handleClick = (sel) => {
 
+        if (filters[sel[Object.keys(sel)]] == 0) {
+            props.add(sel)
+            const temp = filters
+            temp[sel[Object.keys(sel)]] = 1;
+            setFilter(temp);
+        }
+        else if (filters[sel[Object.keys(sel)]] == 1) {
+            props.del(sel)
+            const temp = filters
+            temp[sel[Object.keys(sel)]] = 0;
+            setFilter(temp);
+        }
+
+    };
+    // {{ status: "new" }}
     return (
         <div className={classes.root}>
 
 
             <Grid item md={12} className={classes.filterclass}>
                 Labels :
-                <Chip icon={<FaceOutlinedIcon />} variant="outlined" size="small" label="Personal" color="primary" onClick={handleClick} className={classes.chips} />
-                <Chip icon={<WorkOutlineOutlinedIcon />} variant="outlined" size="small" label="Work" color="primary" onClick={handleClick} className={classes.chips} />
-                <Chip icon={<ShoppingCartOutlinedIcon />} variant="outlined" size="small" label="Shopping" color="primary" onClick={handleClick} className={classes.chips} />
-                <Chip variant="outlined" size="small" label="others" color="primary" onClick={handleClick} className={classes.chips} />
-                <Chip icon={<AddIcon />} variant="outlined" size="small" label="Add label" color="secondary" onClick={handleClick} className={classes.chips} />
+                <Chip icon={<FaceOutlinedIcon />} variant="outlined" size="small" label="Personal" color="primary" onClick={() => handleClick({ label: 'Personal' })} className={classes.chips} />
+                <Chip icon={<WorkOutlineOutlinedIcon />} variant="outlined" size="small" label="Work" color="primary" onClick={() => handleClick({ label: 'Work' })} className={classes.chips} />
+                <Chip icon={<ShoppingCartOutlinedIcon />} variant="outlined" size="small" label="Shopping" color="primary" onClick={() => handleClick({ label: 'Shopping' })} className={classes.chips} />
+                <Chip variant="outlined" size="small" label="Others" color="primary" onClick={() => handleClick({ label: 'Others' })} className={classes.chips} />
+                {/* <Chip icon={<AddIcon />} variant="outlined" size="small" label="Add label" color="secondary" onClick={() => handleClick({ label: 'Personal' })} className={classes.chips} /> */}
 
             </Grid>
             <Grid item md={12} className={classes.filterclass}>
                 Priority :
-                <Chip variant="outlined" size="small" label="High" color="primary" onClick={handleClick} className={classes.chipHigh} />
-                <Chip variant="outlined" size="small" label="Medium" color="primary" onClick={handleClick} className={classes.chipMedium} />
-                <Chip variant="outlined" size="small" label="Low" color="primary" onClick={handleClick} className={classes.chipLow} />
+                <Chip variant="outlined" size="small" label="High" color="primary" onClick={() => handleClick({ priority: 'high' })} className={classes.chipHigh} />
+                <Chip variant="outlined" size="small" label="Medium" color="primary" onClick={() => handleClick({ priority: 'medium' })} className={classes.chipMedium} />
+                <Chip variant="outlined" size="small" label="Low" color="primary" onClick={() => handleClick({ priority: 'low' })} className={classes.chipLow} />
             </Grid>
             <Grid item md={12} className={classes.filterclass}>
                 Status :
-                <Chip icon={<CachedIcon />} variant="outlined" size="small" label="New" color="primary" onClick={handleClick} className={classes.chips} />
-                <Chip icon={<DoneIcon />} variant="outlined" size="small" label="In progress" color="primary" onClick={handleClick} className={classes.chips} />
-                <Chip icon={<DoneIcon />} variant="outlined" size="small" label="Completed" color="primary" onClick={handleClick} className={classes.chips} />
+                <Chip icon={<FiberNewOutlinedIcon />} variant="outlined" size="small" label="New" color="primary" onClick={() => handleClick({ status: 'new' })} className={classes.chips} />
+                <Chip icon={<CachedIcon />} variant="outlined" size="small" label="In progress" color="primary" onClick={() => handleClick({ status: 'inprogress' })} className={classes.chips} />
+                <Chip icon={<DoneIcon />} variant="outlined" size="small" label="Completed" color="primary" onClick={() => handleClick({ status: 'completed' })} className={classes.chips} />
 
             </Grid>
+            <Grid item md={12} className={classes.filterclass}>
+                Date:
+                <Chip variant="outlined" size="small" label="Today" color="primary" onClick={() => handleClick({ label: 'Others' })} className={classes.chips} />
+                <Chip variant="outlined" size="small" label="Tommorow" color="primary" onClick={() => handleClick({ label: 'Others' })} className={classes.chips} />
 
+                <TaskChipDate date='Set Date' modify={handleModify} index='0' style={({ margin: "1.5ch" })} />
+
+            </Grid>
 
         </div>
     );

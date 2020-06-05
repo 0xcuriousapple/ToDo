@@ -50,7 +50,7 @@ export default function Datepicker(props) {
   const id = open ? 'simple-popover' : undefined;
   return (
     // <ClickAwayListener onClickAway={handleClickAway}>
-    <div>
+    <span>
       <IconButton
         color="primary"
         aria-label="date"
@@ -97,6 +97,6 @@ export default function Datepicker(props) {
 
       </Popover>
 
-    </div>
+    </span>
   );
 }

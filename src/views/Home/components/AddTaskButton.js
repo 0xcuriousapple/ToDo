@@ -40,7 +40,7 @@ class AddTaskButton extends Component {
     let form;
     let add1;
     if (viewform) {
-      form = <NewTaskForm handleSubmit={this.props.handleSubmit} />;
+      form = <NewTaskForm handleSubmit={this.props.handleSubmit} filters={this.props.filters} />;
     }
     if (viewadd1) {
       add1 = (

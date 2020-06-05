@@ -1,9 +1,7 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import Avatar from "@material-ui/core/Avatar";
 import Chip from "@material-ui/core/Chip";
 import LabelIcon from "@material-ui/icons/Label";
-import IconButton from '@material-ui/core/IconButton';
 import WorkOutlineOutlinedIcon from "@material-ui/icons/WorkOutlineOutlined";
 import FaceOutlinedIcon from "@material-ui/icons/FaceOutlined";
 import ShoppingCartOutlinedIcon from "@material-ui/icons/ShoppingCartOutlined";
@@ -32,29 +30,27 @@ export default function SmallChips(props) {
     // setOpen(false);
   };
 
-  const handleClick = () => {
-    return <Labelpicker Change={this.handleLabelChange} />
-  };
+
 
   const iconSelector = (selectedlabel) => {
     switch (selectedlabel) {
       case "Personal":
-        return (<Labelpicker Change={handleLabelChange} icon={<FaceOutlinedIcon />} />)
+        return (<Labelpicker Change={handleLabelChange} icon={<FaceOutlinedIcon fontSize="small" />} />);
         break;
       case "personal":
-        return (<Labelpicker Change={handleLabelChange} icon={<FaceOutlinedIcon />} />)
+        return (<Labelpicker Change={handleLabelChange} icon={<FaceOutlinedIcon fontSize="small" />} />)
         break;
       case "Work":
-        return <Labelpicker Change={handleLabelChange} icon={<WorkOutlineOutlinedIcon />} />;
+        return <Labelpicker Change={handleLabelChange} icon={<WorkOutlineOutlinedIcon fontSize="small" />} />;
         break;
       case "work":
-        return <Labelpicker Change={handleLabelChange} icon={<WorkOutlineOutlinedIcon />} />;
+        return <Labelpicker Change={handleLabelChange} icon={<WorkOutlineOutlinedIcon fontSize="small" />} />;
         break;
       case "Shopping":
-        return <Labelpicker Change={handleLabelChange} icon={<ShoppingCartOutlinedIcon />} />;
+        return <Labelpicker Change={handleLabelChange} icon={<ShoppingCartOutlinedIcon fontSize="small" />} />;
         break;
       case "shopping":
-        return <Labelpicker Change={handleLabelChange} icon={<ShoppingCartOutlinedIcon />} />;
+        return <Labelpicker Change={handleLabelChange} icon={<ShoppingCartOutlinedIcon fontSize="small" />} />;
         break;
       case "Others":
         return <Labelpicker Change={handleLabelChange} icon={<Chip
@@ -69,7 +65,7 @@ export default function SmallChips(props) {
 
         />} />;
       case "Set Label":
-        return <Labelpicker Change={handleLabelChange} icon={<LabelIcon />} />
+        return <Labelpicker Change={handleLabelChange} icon={<LabelIcon fontSize="small" />} />
         break;
       default:
         return <Labelpicker Change={handleLabelChange} icon={<Chip

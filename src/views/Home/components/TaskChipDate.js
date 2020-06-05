@@ -5,13 +5,10 @@ import DatePicker from "./Datepicker"
 import { setDate } from "date-fns";
 const useStyles = makeStyles((theme) => ({
   root: {
-    display: "flex",
-    justifyContent: "center",
-    flexWrap: "wrap",
-    "& > *": {
-      margin: theme.spacing(0.5),
-    },
-  },
+    marginTop: "1ch",
+    justifyContent: "center"
+  }
+
 }));
 
 export default function SmallChips(props) {
@@ -47,5 +44,5 @@ export default function SmallChips(props) {
 
     );
   };
-  return <div className={classes.root}>{iconSelector(date)}</div>;
+  return <span className={classes.root}>{iconSelector(date)}</span>;
 }

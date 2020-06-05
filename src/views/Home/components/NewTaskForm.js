@@ -16,6 +16,7 @@ class NewTaskForm extends Component {
     date: "Set Date",
     label: "Set Label",
     status: "new",
+    priority: "low",
     open: false,
   };
   state = this.initialState;
@@ -46,10 +47,27 @@ class NewTaskForm extends Component {
     this.props.handleSubmit(this.state);
     this.setState(this.initialState);
   };
+  UpdateWithFilter = () => {
+    for (var i = 0; i < this.props.filters.length; i++) {
+
+      this.setState(this.props.filters[i]);
+
+    }
+
+  };
+  // componentDidUpdate(nextProps) {
+  //   const { show } = this.props.filters;
+  //   if (nextProps.show !== show) {
+  //     if (show) {
+  //       getMoreData().then(resp => this.setState({ data: resp.data }))
+  //     }
+  //   }
+  // }
+
   render() {
     return (
       <div class="margin">
-
+        {this.UpdateWithFilter}
         <Grid container style={({ width: "100%" }, { flexgrow: 1 })} >
           <Grid item xs={12}>
             <TextField

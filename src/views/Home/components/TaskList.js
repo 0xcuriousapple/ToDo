@@ -10,6 +10,7 @@ import { IconButton } from "@material-ui/core";
 import DeleteIcon from '@material-ui/icons/Delete';
 import { Grid, Typography as MuiTypography, Hidden } from '@material-ui/core';
 import TaskContent from './TaskContent';
+import TaskPriorityIcon from './TaskPriorityIcon';
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
@@ -28,6 +29,7 @@ export default function TaskList(props) {
   const classes = useStyles();
   const [checked, setChecked] = React.useState([1]);
   const [list, setList] = React.useState(props.characterData);
+  const [filters, setFilters] = React.useState(props.filters);
 
   const handleToggle = (value, index) => () => {
     const currentIndex = list.indexOf(value);
@@ -56,11 +58,60 @@ export default function TaskList(props) {
     setList(props.characterData);
   }, [props.characterData]);
 
+  useEffect(() => {
+    setFilters(props.filters);
+  }, [props.filters]);
 
   return (
     <Grid container xs={12}>
       <List dense className={classes.root}>
-        <Hidden mdDown>
+
+
+        {props.characterData.map((row, index) => {
+          const labelId = `checkbox-list-secondary-label-${row.task}`;
+          let flag = 1;
+          for (var filter in filters) {
+            let value = filters[filter]
+            if (row[filter] != value) {
+              flag = 0;
+              break;
+            }
+          }
+          if (flag == 1) {
+            return (
+              <ListItem key={index} button>
+                <TaskPriorityIcon priority={row.priority} modify={handleModify} index={index} />
+                <TaskChipStatus status={row.status} modify={handleModify} index={index} />
+
+                <Grid item xs={10}>
+                  <MuiTypography variant="h5" >
+                    <ListItemText
+                      id={labelId}
+                      style={{ marginLeft: "2ch" }}
+                      disableTypography="true"
+                    >
+
+                      <TaskContent task={row.task} index={index} modify={handleModify} />
+
+                    </ListItemText>
+                  </MuiTypography>
+                </Grid>
+                <TaskChipLabel label={row.label} modify={handleModify} index={index} />
+                <TaskChipDate date={row.date} modify={handleModify} index={index} />
+                <IconButton aria-label="delete" size="small" onClick={handleToggle(row.task, index)}>
+                  <DeleteIcon fontSize="small" />
+                </IconButton>
+              </ListItem>
+            );
+          }
+        })}
+      </List>
+    </Grid>
+  );
+}
+
+
+{/* <Hidden mdDown>
           <ListItem>
             <MuiTypography variant="body2" >
               Status
@@ -81,57 +132,4 @@ export default function TaskList(props) {
               {'Label & Duedate'}
             </MuiTypography>
 
-          </ListItem>  </Hidden>
-
-        {props.characterData.map((row, index) => {
-          const labelId = `checkbox-list-secondary-label-${row.task}`;
-          return (
-            <ListItem key={index} button>
-
-              <TaskChipStatus status={row.status} modify={handleModify} index={index} />
-
-              <Grid item xs={10}>
-                <MuiTypography variant="h5" >
-                  <ListItemText
-                    id={labelId}
-                    style={{ marginLeft: "2ch" }}
-                    disableTypography="true"
-                  >
-                    <TaskContent task={row.task} index={index} modify={handleModify} />
-                  </ListItemText>
-                </MuiTypography>
-              </Grid>
-
-
-              <TaskChipLabel label={row.label} modify={handleModify} index={index} />
-
-
-              <TaskChipDate date={row.date} modify={handleModify} index={index} />
-
-
-              <IconButton aria-label="delete" size="small" onClick={handleToggle(row.task, index)}>
-                <DeleteIcon />
-              </IconButton>
-
-              {/* 
-              <ListItemSecondaryAction>
-                <Checkbox
-                  edge="end"
-                  onChange={handleToggle(row.task, index)}
-                  checked={checked.indexOf(row.task) !== -1}
-                  inputProps={{ "aria-labelledby": labelId }}
-                />
-              
-              </ListItemSecondaryAction> */}
-
-
-            </ListItem>
-
-          );
-        })}
-      </List>
-    </Grid>
-  );
-}
-
-
+          </ListItem>  </Hidden> */}
