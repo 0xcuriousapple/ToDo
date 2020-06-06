@@ -1,20 +1,22 @@
-import React from 'react';
-import { Route } from 'react-router-dom';
-import PropTypes from 'prop-types';
+import React from "react";
+import { Route } from "react-router-dom";
+import PropTypes from "prop-types";
 
-const RouteWithLayout = props => {
-  const { layout: Layout, component: Component, ...rest } = props;
+const RouteWithLayout = (props) => {
+  const { component: Component, ...rest } = props;
   return (
     <Route
       {...rest}
-      render={matchProps => (
-        <Layout>
-          <Component characterData={props.characterData}
-            handleSubmit={props.handleSubmit}
-            removeCharater={props.removeCharater}
-            modify={props.modify}
-            {...props} />
-        </Layout>
+      render={(matchProps) => (
+        <Component
+          characterData={props.characterData}
+          handleSubmit={props.handleSubmit}
+          removeCharater={props.removeCharater}
+          signIN={props.signIN}
+          signUP={props.signUP}
+          modify={props.modify}
+          {...props}
+        />
       )}
     />
   );
@@ -22,8 +24,7 @@ const RouteWithLayout = props => {
 
 RouteWithLayout.propTypes = {
   component: PropTypes.any.isRequired,
-  layout: PropTypes.any.isRequired,
-  path: PropTypes.string
+  path: PropTypes.string,
 };
 
 export default RouteWithLayout;

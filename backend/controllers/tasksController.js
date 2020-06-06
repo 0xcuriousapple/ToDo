@@ -4,6 +4,8 @@ const Task = require('../models/Tasks');
 
 module.exports = {
 
+
+
     getList: function (req, res) {
         Task.findById(req.params.listid)
             .then(list => res.json(list))
@@ -18,7 +20,25 @@ module.exports = {
         Task.findOneAndUpdate({ _id: req.params.listid }, req.body)
             .then(newlist => res.json(newlist))
             .catch(err => res.status(422).json(err));
-    }
+    },
+
+    // addTask: function (req, res) {
+    //     Task.updateOne(
+    //         { _id: req.params.listid },
+    //         {
+    //             $push: {
+    //                 task: req.body.task,
+    //                 date: req.body.date,
+    //                 label: req.body.label,
+    //                 status: req.body.status,
+    //                 priority: req.body.priority
+    //             }
+
+    //         },
+    //         { upsert: true }
+    //     ).then(newlist => res.json(newlist))
+    //         .catch(err => res.status(422).json(err));
+    // },
 };
 
 

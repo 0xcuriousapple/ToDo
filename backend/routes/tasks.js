@@ -6,6 +6,15 @@ router
     .get(tasksController.getList)
     .put(tasksController.updateList)
 
+// .post(tasksController.addTask)
+
+// router
+//     .route('/:listid/:taskid')
+
+// .put(tasksController.modifyTask)
+// .delete(tasksController.deleteTask)
+
+
 router
     .route('/create')
     .post(tasksController.createList);

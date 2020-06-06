@@ -3,17 +3,15 @@ const Schema = mongoose.Schema;
 
 const taskSchema = new Schema({
 
-    list: {
-        task: {
-
+    list: [
+        {
             task: {},
             date: {},
             label: {},
             status: {},
             priority: {}
         }
-    }
-
+    ]
 });
 
 const Task = mongoose.model('Task', taskSchema);

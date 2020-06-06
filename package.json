@@ -32,8 +32,10 @@
     "@material-ui/lab": "^4.0.0-alpha.53",
     "@material-ui/pickers": "^3.2.10",
     "@material-ui/styles": "^4.2.1",
+    "axios": "^0.19.2",
     "chart.js": "^2.8.0",
     "clsx": "^1.0.4",
+    "crypto-js": "^4.0.0",
     "date-fns": "^2.8.1",
     "history": "^4.9.0",
     "moment": "^2.24.0",
@@ -51,5 +53,6 @@
     "uuid": "^3.3.2",
     "validate.js": "^0.13.1"
   },
-  "devDependencies": {}
+  "devDependencies": {},
+  "proxy": "http://localhost:5000"
 }
