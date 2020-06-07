@@ -9,7 +9,7 @@ export default {
     return axios.put("/api/list/" + id, newlist);
   },
   createList: function (list) {
-    return axios.post("/list/create", list);
+    return axios.post("/api/list/create/", list);
   },
   getListId: function (id) {
     return axios.get("/api/user/" + id);
