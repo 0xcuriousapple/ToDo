@@ -23,8 +23,6 @@ import {
   Typography,
 } from "@material-ui/core";
 
-import ArrowBackIcon from "@material-ui/icons/ArrowBack";
-
 const schema = {
   firstName: {
     presence: { allowEmpty: false, message: "is required" },

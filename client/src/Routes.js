@@ -3,25 +3,11 @@ import { Switch, Redirect } from "react-router-dom";
 import sha256 from "crypto-js/sha256";
 import CryptoJS from "crypto-js";
 import { RouteWithLayout } from "./components";
-import { Main as MainLayout, Minimal as MinimalLayout } from "./layouts";
 import Snackbar from "@material-ui/core/Snackbar";
 import MuiAlert from "@material-ui/lab/Alert";
 import API from "./API/API";
 
-import {
-  Dashboard as DashboardView,
-  Home as HomeView,
-  ProductList as ProductListView,
-  UserList as UserListView,
-  Typography as TypographyView,
-  Icons as IconsView,
-  Account as AccountView,
-  Settings as SettingsView,
-  SignUp as SignUpView,
-  SignIn as SignInView,
-  NotFound as NotFoundView,
-} from "./views";
-import { Password } from "views/Settings/components";
+import { Home as HomeView } from "./views";
 
 function Alert(props) {
   return <MuiAlert elevation={6} variant="filled" {...props} />;
@@ -236,12 +222,7 @@ class Routes extends Component {
         </Snackbar>
         <Switch>
           <Redirect exact from="/" to="/home" />
-          <RouteWithLayout
-            component={DashboardView}
-            exact
-            layout={MainLayout}
-            path="/dashboard"
-          />
+
           <RouteWithLayout
             component={HomeView}
             exact
@@ -256,61 +237,6 @@ class Routes extends Component {
             signOUT={this.signout}
             modify={this.modify}
           />
-          <RouteWithLayout
-            component={UserListView}
-            exact
-            layout={MainLayout}
-            path="/users"
-          />
-          <RouteWithLayout
-            component={ProductListView}
-            exact
-            layout={MainLayout}
-            path="/products"
-          />
-          <RouteWithLayout
-            component={TypographyView}
-            exact
-            layout={MainLayout}
-            path="/typography"
-          />
-          <RouteWithLayout
-            component={IconsView}
-            exact
-            layout={MainLayout}
-            path="/icons"
-          />
-          <RouteWithLayout
-            component={AccountView}
-            exact
-            layout={MainLayout}
-            path="/account"
-          />
-          <RouteWithLayout
-            component={SettingsView}
-            exact
-            layout={MainLayout}
-            path="/settings"
-          />
-          <RouteWithLayout
-            component={SignUpView}
-            exact
-            layout={MinimalLayout}
-            path="/sign-up"
-          />
-          <RouteWithLayout
-            component={SignInView}
-            exact
-            layout={MinimalLayout}
-            path="/sign-in"
-          />
-          <RouteWithLayout
-            component={NotFoundView}
-            exact
-            layout={MinimalLayout}
-            path="/not-found"
-          />
-          <Redirect to="/not-found" />
         </Switch>
       </div>
     );

@@ -6,14 +6,40 @@ import ListItemText from "@material-ui/core/ListItemText";
 import TaskChipLabel from "./TaskChipLabel";
 import TaskChipDate from "./TaskChipDate";
 import TaskChipStatus from "./TaskChipStatus";
+import Typography from "@material-ui/core/Typography";
 import { IconButton } from "@material-ui/core";
 import DeleteIcon from "@material-ui/icons/Delete";
 import { Grid, Typography as MuiTypography, Hidden } from "@material-ui/core";
 import TaskContent from "./TaskContent";
 import TaskPriorityIcon from "./TaskPriorityIcon";
-import SwipeableDrawer from "@material-ui/core/SwipeableDrawer";
-import Divider from "@material-ui/core/Divider";
-
+import useMediaQuery from "@material-ui/core/useMediaQuery";
+import { useTheme } from "@material-ui/core/styles";
+import ExpansionPanel from "@material-ui/core/ExpansionPanel";
+import ExpansionPanelSummary from "@material-ui/core/ExpansionPanelSummary";
+import ExpansionPanelDetails from "@material-ui/core/ExpansionPanelDetails";
+import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
+import { createMuiTheme } from "@material-ui/core";
+import { ThemeProvider } from "@material-ui/styles";
+const materialTheme = createMuiTheme({
+  overrides: {
+    MuiPaper: {
+      root: {
+        backgroundColor: "transparent",
+      },
+      elevation1: {
+        boxShadow: "transparent",
+      },
+    },
+  },
+  //   .MuiTypography-h5-585 {
+  //     font-size: 17px;
+  //     font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+  //     font-weight: 420;
+  //     line-height: 1.334;
+  //     letter-spacing: 0em;
+  // }
+  // },
+});
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
@@ -24,6 +50,13 @@ const useStyles = makeStyles((theme) => ({
   label: {
     textAlign: "left",
   },
+  heading: {
+    fontSize: theme.typography.pxToRem(15),
+    fontWeight: theme.typography.fontWeightRegular,
+  },
+  ex: {
+    width: "100%",
+  },
 }));
 
 export default function TaskList(props) {
@@ -32,6 +65,8 @@ export default function TaskList(props) {
   const [checked, setChecked] = React.useState([1]);
   const [list, setList] = React.useState(props.characterData);
   const [filters, setFilters] = React.useState(props.filters);
+  const theme = useTheme();
+  const Screen = useMediaQuery(theme.breakpoints.down("md"));
   const [state, setState] = React.useState({
     bottom: false,
   });
@@ -90,13 +125,6 @@ export default function TaskList(props) {
               flag = 0;
               break;
             }
-
-            // let value = filters[filter];
-            // console.log(row, value);
-            // if (row[filter] != value) {
-            //   flag = 0;
-            //   break;
-            // }
           }
           if (flag == 1) {
             return (

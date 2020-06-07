@@ -15,6 +15,8 @@ import SignupButton from "./SignupButton";
 import ExitToAppIcon from "@material-ui/icons/ExitToApp";
 import { deepOrange, deepPurple } from "@material-ui/core/colors";
 import { Hidden } from "@material-ui/core";
+import Guide from "./Guide";
+
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
@@ -99,6 +101,7 @@ export default function MenuAppBar(props) {
               developed by @thehead
             </Typography>
           </Hidden> */}
+          <Guide open={auth} />
           {auth && (
             <div>
               <IconButton
@@ -107,6 +110,7 @@ export default function MenuAppBar(props) {
                 aria-haspopup="true"
                 onClick={handleMenu}
                 color="inherit"
+                size="small"
               >
                 <Avatar className={classes.orange}>
                   {props.userData.firstname.charAt(0)}

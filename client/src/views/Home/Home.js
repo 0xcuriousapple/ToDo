@@ -14,6 +14,8 @@ import { makeStyles } from "@material-ui/core/styles";
 import "./components/parent.css";
 import useMediaQuery from "@material-ui/core/useMediaQuery";
 import { useTheme } from "@material-ui/core/styles";
+import Typography from "@material-ui/core/Typography";
+import ListItem from "@material-ui/core/ListItem";
 const useStyles = makeStyles((theme) => ({
   root: {
     display: "flex",
@@ -95,6 +97,12 @@ function Home(props) {
                 handleSubmit={props.handleSubmit}
                 filters={filters}
               />
+              <ListItem>
+                <Typography variant="overline">
+                  &nbsp;&nbsp;Instructions, meaning of symbols are available in
+                  Help (Top bar).
+                </Typography>
+              </ListItem>
             </Paper>
           ) : (
             <div>
@@ -108,6 +116,12 @@ function Home(props) {
                 handleSubmit={props.handleSubmit}
                 filters={filters}
               />
+              <ListItem>
+                <Typography variant="overline">
+                  &nbsp;&nbsp;help is available in Top bar, if required, Thank
+                  you !
+                </Typography>
+              </ListItem>
             </div>
           )}
         </Grid>

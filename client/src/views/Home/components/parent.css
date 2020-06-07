@@ -1,3 +1,5 @@
-span {
-  margin: 0.8ch;
+@media (min-width: 800px) {
+  span {
+    margin: 0.8ch;
+  }
 }

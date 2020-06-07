@@ -106,18 +106,23 @@ class NewTaskForm extends Component {
               onChange={this.handleChange}
             />
           </Grid>
-          <Grid item xs={5}>
+          <Grid item xs={11}></Grid>
+          <Grid item xs={1}>
             <Fab
               color="primary"
               aria-label="add"
               onClick={this.submitForm}
               size="small"
-              style={({ marginLeft: "1.5ch" }, { alignItems: "flex-end" })}
+              style={
+                ({ marginLeft: "1.5ch" },
+                { alignItems: "flex-end" },
+                { right: "2%" })
+              }
             >
               <AddIcon />
             </Fab>
 
-            <Fab
+            {/* <Fab
               color="primary"
               aria-label="add"
               onClick={this.submitForm}
@@ -125,7 +130,7 @@ class NewTaskForm extends Component {
               style={{ marginLeft: "1.5ch" }}
             >
               <KeyboardVoiceOutlinedIcon />
-            </Fab>
+            </Fab> */}
           </Grid>
         </Grid>
       </div>
