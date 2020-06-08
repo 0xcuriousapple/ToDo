@@ -22,6 +22,10 @@ export default function SmallChips(props) {
     setDate(date);
   };
 
+  useEffect(() => {
+    setDate(props.date);
+  }, [props.date]);
+
   var months = [
     "Jan",
     "Feb",

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Chip from "@material-ui/core/Chip";
 import LabelIcon from "@material-ui/icons/Label";
@@ -17,61 +17,100 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-
 export default function SmallChips(props) {
   const classes = useStyles();
   const [selectedlabel, setSelectedlabel] = React.useState(props.label);
   const handleLabelChange = (label) => {
-
-    props.modify(props.index, 'label', label);
+    props.modify(props.index, "label", label);
     setSelectedlabel(label);
 
     // props.Change(date);
     // setOpen(false);
   };
-
-
+  useEffect(() => {
+    setSelectedlabel(props.label);
+  }, [props.label]);
 
   const iconSelector = (selectedlabel) => {
     switch (selectedlabel) {
       case "Personal":
-        return (<Labelpicker Change={handleLabelChange} icon={<FaceOutlinedIcon fontSize="small" />} />);
+        return (
+          <Labelpicker
+            Change={handleLabelChange}
+            icon={<FaceOutlinedIcon fontSize="small" />}
+          />
+        );
         break;
       case "personal":
-        return (<Labelpicker Change={handleLabelChange} icon={<FaceOutlinedIcon fontSize="small" />} />)
+        return (
+          <Labelpicker
+            Change={handleLabelChange}
+            icon={<FaceOutlinedIcon fontSize="small" />}
+          />
+        );
         break;
       case "Work":
-        return <Labelpicker Change={handleLabelChange} icon={<WorkOutlineOutlinedIcon fontSize="small" />} />;
+        return (
+          <Labelpicker
+            Change={handleLabelChange}
+            icon={<WorkOutlineOutlinedIcon fontSize="small" />}
+          />
+        );
         break;
       case "work":
-        return <Labelpicker Change={handleLabelChange} icon={<WorkOutlineOutlinedIcon fontSize="small" />} />;
+        return (
+          <Labelpicker
+            Change={handleLabelChange}
+            icon={<WorkOutlineOutlinedIcon fontSize="small" />}
+          />
+        );
         break;
       case "Shopping":
-        return <Labelpicker Change={handleLabelChange} icon={<ShoppingCartOutlinedIcon fontSize="small" />} />;
+        return (
+          <Labelpicker
+            Change={handleLabelChange}
+            icon={<ShoppingCartOutlinedIcon fontSize="small" />}
+          />
+        );
         break;
       case "shopping":
-        return <Labelpicker Change={handleLabelChange} icon={<ShoppingCartOutlinedIcon fontSize="small" />} />;
+        return (
+          <Labelpicker
+            Change={handleLabelChange}
+            icon={<ShoppingCartOutlinedIcon fontSize="small" />}
+          />
+        );
         break;
       case "Others":
-        return <Labelpicker Change={handleLabelChange} icon={<Chip
-          label={selectedlabel}
-          size="small"
-        />} />;
+        return (
+          <Labelpicker
+            Change={handleLabelChange}
+            icon={<Chip label={selectedlabel} size="small" />}
+          />
+        );
         break;
       case "others":
-        return <Labelpicker Change={handleLabelChange} icon={<Chip
-          label={selectedlabel}
-          size="small"
-
-        />} />;
+        return (
+          <Labelpicker
+            Change={handleLabelChange}
+            icon={<Chip label={selectedlabel} size="small" />}
+          />
+        );
       case "Set Label":
-        return <Labelpicker Change={handleLabelChange} icon={<LabelIcon fontSize="small" />} />
+        return (
+          <Labelpicker
+            Change={handleLabelChange}
+            icon={<LabelIcon fontSize="small" />}
+          />
+        );
         break;
       default:
-        return <Labelpicker Change={handleLabelChange} icon={<Chip
-          label={selectedlabel}
-          size="small"
-        />} />
+        return (
+          <Labelpicker
+            Change={handleLabelChange}
+            icon={<Chip label={selectedlabel} size="small" />}
+          />
+        );
         break;
     }
   };
