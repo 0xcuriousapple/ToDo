@@ -45,7 +45,7 @@ export default function TaskContent(props) {
       html={props.task}
       onChange={handleChange}
       className={classes.contentEditable}
-      style={{ width: contentwidth ? "140px" : "380px" }}
+      style={{ width: contentwidth ? "140px" : "330px" }}
     />
   );
 }
